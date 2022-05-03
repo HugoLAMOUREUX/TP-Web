@@ -14,4 +14,12 @@ public class User {
     private String name;
     private List<TodoList> lists;
 
+    public TodoList findTodoList(String todoListName) {
+        for ( TodoList todoList : lists){
+            if(todoList.getName().equals(todoListName)){
+                return todoList;
+            }
+        }
+        return null;
+    }
 }

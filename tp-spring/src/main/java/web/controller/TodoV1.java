@@ -22,16 +22,52 @@ public class TodoV1 {
         return "hello bitch";
     }
     @GetMapping(path="todo",produces=MediaType.APPLICATION_JSON_VALUE)
-    public TodoList Q14(){
+    public TodoList get(){
         TodoList res=new TodoList();
-        //Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
-        //ires.setTodoList(List.of(td1));
+        Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
+        res.setTodoList(List.of(td1));
         return res;
     }
 
-    @PostMapping(path="todo",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void q15(@RequestBody final String txt){
-        System.out.println(txt);
+    @PostMapping(path="todo/{userName}/{todolistName}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void q15(@RequestBody final Todo todo,@PathVariable("userName") final String userName, @PathVariable("todolistName") final String todolistName){
+
+        if(findTodo(userName,todolistName,todo.getTitle()) == null){
+            for ( User u : users){
+                if(u.getName().equals(userName)){
+                    try {
+                        TodoList res = u.findTodoList(todolistName);
+                        List<Todo> res2 = res.getTodoList();
+                        res2.add(todo);
+                        res.setTodoList(res2);
+                        System.out.println(u.findTodoList(todolistName));
+                    }catch(NullPointerException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }else {
+            System.out.println("deja present mon reuf");
+        }
+
+    }
+
+    public Todo findTodo (String userName, String todolistName, String todoName){
+        for ( User u : users){
+            if(u.getName().equals(userName)){
+                for (TodoList todoList : u.getLists()){
+                    if(todoList.getName().equals(todolistName)){
+                        for (Todo todo : todoList.getTodoList()){
+                            if(todo.getTitle().equals(todoName)){
+                                return todo;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+
     }
 
     @PostMapping(path="user",consumes = MediaType.APPLICATION_JSON_VALUE)
