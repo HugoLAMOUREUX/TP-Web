@@ -59,7 +59,7 @@ class TodoV2Test {
 
     @Test
     void getTest() throws Exception {
-        mvc.perform(get("/api/insa/v1/todo/todo"))
+        mvc.perform(get("/api/insa/v2/todo/todo"))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$.*",hasSize(2)))
@@ -72,7 +72,7 @@ class TodoV2Test {
 
     @Test
     void coucou() throws Exception {
-        mvc.perform(post("/api/insa/v1/todo/Christine/Jean").content("""
+        mvc.perform(post("/api/insa/v2/todo/Christine/Jean").content("""
 {
     "title": "title2",
     "privateDescription": "foo",
