@@ -213,6 +213,7 @@ Cette *v1* souffre d'un défaut majeur : toutes les données sont contenues dans
 ### Q3.1
 
 - Pourquoi contenir les données dans les contrôleurs REST est une très mauvaises pratiques ?
+- > on perd les données en cas de redemarrage du serveur, et il peut y avoir des infiltrations potentiellement
 
 
 ### Q3.2
@@ -235,7 +236,8 @@ En fait, c'est également un très mauvaise pratique d'instancier un service dir
 
 - Faire comme dans le slide 67 : le service est un paramètre du constructeur du contrôleur et non instancié dans celui-ci.
 
-- Pour rappel, qui instancie les contrôleurs et les services, etc. ?
+- Pour rappel, qui instancie les contrôleurs et les services, etc. ? 
+- >C'est spring qui fait tout ca
 
 
 ### Q3.5
