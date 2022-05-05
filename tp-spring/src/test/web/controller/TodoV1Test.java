@@ -82,10 +82,10 @@ class TodoV1Test {
     "title": "title2",
     "privateDescription": "foo",
     "publicDescription": "bar,
-    "categories": ["ENTERTAINMENT"]
+    "category": "ENTERTAINEMENT"
 }
 	"""))
-                //.andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 }

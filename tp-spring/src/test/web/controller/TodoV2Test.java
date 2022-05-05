@@ -72,15 +72,15 @@ class TodoV2Test {
 
     @Test
     void coucou() throws Exception {
-        mvc.perform(post("/api/insa/v2/todo/Christine/Jean").content("""
+        mvc.perform(post("/api/insa/v2/todo/todo/Christine/Jean").contentType(MediaType.APPLICATION_JSON).content("""
 {
     "title": "title2",
     "privateDescription": "foo",
-    "publicDescription": "bar,
-    "categories": ["ENTERTAINMENT"]
+    "publicDescription": "bar",
+    "category": "ENTERTAINEMENT"
 }
 	"""))
-                //.andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 }
