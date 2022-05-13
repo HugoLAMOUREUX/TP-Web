@@ -16,6 +16,21 @@ import java.util.List;
 public class TodoService {
     private List<User> users=new ArrayList<User>();
 
+    public User getUser(String letsgo){
+        for(User e : users){
+            if(e.getName().equals(letsgo)){
+                return e;
+            }
+        }
+
+        return null;
+    }
+
+    public void addUser(User u){
+        if(u!= null){
+        users.add(u);}
+    }
+
 
     public Todo findTodo (String userName, String todolistName, String todoName){
         for ( User u : users){

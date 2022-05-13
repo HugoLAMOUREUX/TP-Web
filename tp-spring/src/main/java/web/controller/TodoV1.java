@@ -1,17 +1,16 @@
 package web.controller;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import web.model.Category;
-import web.model.Todo;
-import web.model.TodoList;
-import web.model.User;
+import web.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/insa/v1/todo")
+@RequestMapping("api/public/insa/v1/todo")
 public class TodoV1 {
 
     private List<User> users=new ArrayList<User>();
@@ -24,10 +23,11 @@ public class TodoV1 {
     @GetMapping(path="todo",produces=MediaType.APPLICATION_JSON_VALUE)
     public TodoList get(){
         TodoList res=new TodoList();
-        Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
-        res.setTodoList(List.of(td1));
+        //Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
+        //res.setTodoList(List.of(td1));
         return res;
     }
+
 
     @PostMapping(path="todo/{userName}/{todolistName}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void q15(@RequestBody final Todo todo,@PathVariable("userName") final String userName, @PathVariable("todolistName") final String todolistName){
@@ -41,6 +41,7 @@ public class TodoV1 {
                         res2.add(todo);
                         res.setTodoList(res2);
                         System.out.println(u.findTodoList(todolistName));
+                        System.out.println(res2);
                     }catch(NullPointerException e){
                         e.printStackTrace();
                     }

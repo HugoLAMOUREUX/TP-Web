@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/insa/v2/todo")
+@RequestMapping("api/public/insa/v2/todo")
 public class TodoV2 {
     private final TodoService todoService;
 
@@ -30,8 +30,8 @@ public class TodoV2 {
     @GetMapping(path="todo",produces=MediaType.APPLICATION_JSON_VALUE)
     public TodoList get(){
         TodoList res=new TodoList();
-        Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
-        res.setTodoList(List.of(td1));
+        //Todo td1= new Todo("la liste de lolo","probablement faire du ping pong","battre philipe gall",Category.HIGH_PRIORITY);
+        //res.setTodoList(List.of(td1));
         return res;
     }
 
